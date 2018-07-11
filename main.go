@@ -14,10 +14,10 @@ import (
 )
 
 type twitterKeys struct {
-	consumerKey *string
+	consumerKey    *string
 	consumerSecret *string
-	accessToken *string
-	accessSecret *string
+	accessToken    *string
+	accessSecret   *string
 }
 
 func getTwitterFlags() twitterKeys {
@@ -38,11 +38,11 @@ func getTwitterFlags() twitterKeys {
 
 // should return a tweet streamer
 func GetTweetStreamer() *twitter.Stream {
-	twitterFlags := getTwitterFlags()	
+	twitterFlags := getTwitterFlags()
 
 	config := oauth1.NewConfig(*twitterFlags.consumerKey, *twitterFlags.consumerSecret)
 	token := oauth1.NewToken(*twitterFlags.accessToken, *twitterFlags.accessSecret)
-	
+
 	// OAuth1 http.Client will automatically authorize Requests
 	httpClient := config.Client(oauth1.NoContext, token)
 
@@ -52,7 +52,7 @@ func GetTweetStreamer() *twitter.Stream {
 	// Filter
 	filterParams := &twitter.StreamFilterParams{
 		StallWarnings: twitter.Bool(true),
-		Locations: 	   []string{"-180,-90,180,90"}, // All locations
+		Locations:     []string{"-180,-90,180,90"}, // All locations
 	}
 
 	stream, err := client.Streams.Filter(filterParams)
@@ -82,5 +82,3 @@ func main() {
 	fmt.Println("Stopping Stream...")
 	stream.Stop()
 }
-
-
