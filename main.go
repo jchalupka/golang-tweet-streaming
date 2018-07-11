@@ -36,7 +36,6 @@ func getTwitterFlags() twitterKeys {
 	return twitterKeys{consumerKey, consumerSecret, accessToken, accessSecret}
 }
 
-// should return a tweet streamer
 func GetTweetStreamer() *twitter.Stream {
 	twitterFlags := getTwitterFlags()
 
